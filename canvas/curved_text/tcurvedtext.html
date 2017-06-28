@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Прокручивание текста</title>
+
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      canvas {
+        border: 1px solid #9C9898;
+
+		
+      }
+	  .mauto{
+	  		margin: 3% auto;
+			display:block;
+			position:relative;
+			width: 560px;
+						
+	  }
+    </style>   
+    
+    <script src="js/jquery.js"></script>
+    <script src="js/kinetic-v4.0.2.js"></script>
+	<script src="tcurvedtext.js"></script>
+	<script src="TImageList.js"></script>
+	<script>
+  var imglist={};
+  var circle_Textpatch = {};
+  var shapesLayer ={};
+	window.onload = function(){
+  
+  var stage = new Kinetic.Stage({
+          container: 'container',
+          width: 560,
+          height: 440
+      });
+  var  shapesLayer = new Kinetic.Layer();
+    
+  imglist = new TImageList({
+        list:[
+          {name: 'curved-text-control-anchor-icons', src: 'style/main/img/photo-control-anchor-icons.png', root: false},          
+       
+        ],
+        callback_endload: function(){
+          circle_Textpatch = new TCurvedText({          
+            layer: shapesLayer,
+            imagelist:imglist,
+            cuttext:6.28,
+            startleftpoint:{x: 160,y: 160}, //крайняя левая точка
+            width: 200,  // Диаметр круга по X
+            height: 200, // Диаметр круга по Y
+            grade: 0,  // От куда начинать отображать в Радианах
+            reverseDirection: true,     // Отображение текста по часовой или против часовой
+            font:{family: 'Tahoma', style: 'normal', size: 15, color: '#030afc'},
+            stroke:{color: '#3dc54e', width: 1.0},
+            shadow:{color: '#faff3e', blur: 10, offset: [0, 0], opacity: 1.2},
+            texttitle:'M e r r y  C h r i s t m a a s,  D e a r  H e l l e n !--------------------------------------------------------------------E N D'
+          });  
+ //         var redLine = new Kinetic.Line({
+ //         points: [0, 0, 280, 220],
+ //         stroke: "red",
+ //         strokeWidth: 2,
+ //         lineCap: "round",
+ //         lineJoin: "round"
+//        });
+//           shapesLayer.add(redLine);  
+          shapesLayer.add(circle_Textpatch);
+          stage.add(shapesLayer);          
+        }
+      });
+	};
+  
+  function funct1(alias){
+  switch(alias){
+    case 'hide':
+      circle_Textpatch.hide_contrl();
+      break;
+   case 'show':
+       circle_Textpatch.show_contrl();     
+   break;
+   case 'text':   
+      var text = $('#textpatch').val();
+      circle_Textpatch.set_text(text);      
+   break;
+  }
+   //
+   //
+  }
+ 
+  function funct2(){    
+       circle_Textpatch.show_contrl();
+
+  }
+	</script>
+	
+  </head>
+  <body>
+  <div class="mauto">
+	Зажмите зеленую кнопку и крутите текст
+    <div id="container"></div>
+    <textarea name="textpatch" id="textpatch" cols="" rows=""></textarea>
+	
+    <input  class="product-text" name="tojsonm" type="button"  value="hide" onclick="funct1('hide')" >
+    <input  class="product-text" name="tojsonm" type="button"  value="show" onclick="funct1('show')" >
+    <input  class="product-text" name="tojsonm" type="button"  value="text" onclick="funct1('text')" >
+	</div>
+  </body>
+</html>
+
