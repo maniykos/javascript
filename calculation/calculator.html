@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Title</title>
+
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vee-validate/2.0.0-beta.25/vee-validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vee-validate/2.0.0-beta.25/locale/ru.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+</head>
+<body>
+
+    <div class="calc-bl" id="calculator">
+        <div class="calc-input">
+            <input type="text" name="result" v-html="result" v-model="result" disabled placeholder="0">
+            <button v-html="operations.clean" @click="cleanOperation(operations.clean)"></button>
+        </div>
+        <div class="calc-fl">
+            <button v-html="number.seven" @click="setNumber(number.seven)"></button>
+            <button v-html="number.eight" @click="setNumber(number.eight)"></button>
+            <button v-html="number.nine" @click="setNumber(number.nine)"></button>
+            <button v-html="operations.divided" @click="setOperation(operations.divided)"></button>
+        </div>
+        <div class="calc-fl">
+            <button v-html="number.four" @click="setNumber(number.four)"></button>
+            <button v-html="number.five" @click="setNumber(number.five)"></button>
+            <button v-html="number.six" @click="setNumber(number.six)"></button>
+            <button v-html="operations.times" @click="setOperation(operations.times)"></button>
+        </div>
+        <div class="calc-fl">
+            <button v-html="number.one" @click="setNumber(number.one)"></button>
+            <button v-html="number.two" @click="setNumber(number.two)"></button>
+            <button v-html="number.three" @click="setNumber(number.three)"></button>
+            <button v-html="operations.minus" @click="setOperation(operations.minus)"></button>
+        </div>
+        <div class="calc-fl">
+            <button v-html="number.zero" @click="setNumber(number.zero)"></button>
+            <button v-html="operations.point" @click="setNumber(operations.point)"></button>
+            <button v-html="operations.equals" @click="calculate(operations.equals)"></button>
+            <button v-html="operations.plus" @click="setOperation(operations.plus)"></button>
+        </div>
+        <div class="calc-fl" id="calc">
+
+        </div>
+
+    </div>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
